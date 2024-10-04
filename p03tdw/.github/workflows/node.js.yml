@@ -1,0 +1,38 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+          cache-dependency-path: ./p03-tdw/tdwP03/p03tdw/package-lock.json # Cache ajustado para o caminho correto
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./p03-tdw/tdwP03/p03tdw # Instala as dependências no diretório correto
+
+      - name: Build the project
+        run: npm run build --if-present
+        working-directory: ./p03-tdw/tdwP03/p03tdw # Executa o build no diretório correto
+
+      - name: Run tests
+        run: npm test
+        working-directory: ./p03-tdw/tdwP03/p03tdw # Executa os testes no diretório correto
