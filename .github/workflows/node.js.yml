@@ -1,10 +1,6 @@
 name: Node.js CI
 
-on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+on: [pull_request, push]
 
 jobs:
   build:
@@ -23,16 +19,16 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-          cache-dependency-path: ./p03-tdw/tdwP03/p03tdw/package-lock.json # Cache ajustado para o caminho correto
+          cache-dependency-path: ./tdwP03/p03tdw/package-lock.json # Cache ajustado para o caminho correto
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ./p03-tdw/tdwP03/p03tdw # Instala as dependências no diretório correto
+        working-directory: ./tdwP03/p03tdw # Instala as dependências no diretório correto
 
       - name: Build the project
         run: npm run build --if-present
-        working-directory: ./p03-tdw/tdwP03/p03tdw # Executa o build no diretório correto
+        working-directory: ./tdwP03/p03tdw # Executa o build no diretório correto
 
       - name: Run tests
         run: npm test
-        working-directory: ./p03-tdw/tdwP03/p03tdw # Executa os testes no diretório correto
+        working-directory: ./tdwP03/p03tdw # Executa os testes no diretório correto
