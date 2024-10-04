@@ -18,8 +18,8 @@ jobs:
         with:
           path: |
             ~/.npm
-            ./tdwP03/p03tdw/node_modules  # Caminho correto para node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('tdwP03/p03tdw/package-lock.json') }} # Caminho correto para package-lock.json
+            ./tdwP03/p03tdw/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('tdwP03/p03tdw/package-lock.json') }}
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -28,12 +28,12 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-        working-directory: ./tdwP03/p03tdw
+        working-directory: ./tdwP03/p03tdw # Este deve estar correto
 
       - name: Build the project
-        run: npm run build
-        working-directory: ./tdwP03/p03tdw
+        run: npm run build --if-present
+        working-directory: ./tdwP03/p03tdw # Este deve estar correto
 
       - name: Run tests
         run: npm test
-        working-directory: ./tdwP03/p03tdw
+        working-directory: ./tdwP03/p03tdw # Este deve estar correto
