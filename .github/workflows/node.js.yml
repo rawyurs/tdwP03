@@ -18,8 +18,8 @@ jobs:
         with:
           path: |
             ~/.npm
-            ./tdwP03/p03tdw/node_modules  # Cache para node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('tdwP03/p03tdw/package-lock.json') }} # Key para o cache
+            ./p03tdw/node_modules  # Atualizado para refletir o caminho correto
+          key: ${{ runner.os }}-node-${{ hashFiles('p03tdw/package-lock.json') }} # Atualizado para refletir o caminho correto
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -27,16 +27,16 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: List files in working directory
-        run: ls -la ./tdwP03/p03tdw # Adicionando este passo para listar arquivos
+        run: ls -la ./p03tdw # Atualizado para refletir o caminho correto
 
       - name: Install dependencies
-        run: npm ci
-        working-directory: ./tdwP03/p03tdw # Definindo o diretório de trabalho correto
+        run: npm install
+        working-directory: ./p03tdw # Atualizado para refletir o caminho correto
 
       - name: Build the project
         run: npm run build --if-present
-        working-directory: ./tdwP03/p03tdw # Definindo o diretório de trabalho correto
+        working-directory: ./p03tdw # Atualizado para refletir o caminho correto
 
       - name: Run tests
         run: npm test
-        working-directory: ./tdwP03/p03tdw # Definindo o diretório de trabalho correto
+        working-directory: ./p03tdw # Atualizado para refletir o caminho correto
