@@ -4,7 +4,7 @@ export default function Home() {
       <h2 id="criado">Titulo Novo</h2>
       <p>Teste</p>
       <p>umbigo</p>
-      <p>umbigo2</p>
+      <p>piscina</p>
       <h1>Hello World!</h1> {/* Adicione o texto desejado aqui */}
     </>
   );
