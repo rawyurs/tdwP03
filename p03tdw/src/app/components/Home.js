@@ -6,7 +6,8 @@ export default function Home() {
       <p>umbigo</p>
       <p>piscina</p>
       <p>amizade2</p>
-      <h1>Hello World!</h1> {/* Adicione o texto desejado aqui */}
+      <h1>Hello World!</h1>
+      <p>Manel</p>
     </>
   );
 }

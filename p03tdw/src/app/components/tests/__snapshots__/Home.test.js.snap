@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Home component 1`] = `
+<DocumentFragment>
+  <h2
+    id="criado"
+  >
+    Titulo Novo
+  </h2>
+  <p>
+    Teste
+  </p>
+  <p>
+    umbigo
+  </p>
+  <p>
+    piscina
+  </p>
+  <p>
+    amizade2
+  </p>
+  <h1>
+    Hello World!
+  </h1>
+  <p>
+    Manel
+  </p>
+</DocumentFragment>
+`;
