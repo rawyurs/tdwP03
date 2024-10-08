@@ -23,7 +23,7 @@ exports[`renders Home component 1`] = `
     Hello World!
   </h1>
   <p>
-    Manel
+    Ricardo
   </p>
 </DocumentFragment>
 `;

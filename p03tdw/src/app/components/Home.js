@@ -7,7 +7,7 @@ export default function Home() {
       <p>piscina</p>
       <p>amizade2</p>
       <h1>Hello World!</h1>
-      <p>Manel</p>
+      <p>Ricardo</p>
     </>
   );
 }
