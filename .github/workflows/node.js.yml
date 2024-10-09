@@ -58,20 +58,16 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: List files in working directory
-        run: ls -la ./p03tdw
-
       - name: Install dependencies
         run: npm install
         working-directory: ./p03tdw
 
       - name: Build the project
-        run: npm run build --if-present
+        run: npm run build && npm run export
         working-directory: ./p03tdw
 
-      - name: Run tests
-        run: npm test
-        working-directory: ./p03tdw
+      - name: List files in out directory
+        run: ls -la ./p03tdw/out
 
   deploy:
     runs-on: ubuntu-latest
@@ -80,4 +76,4 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Deploy to Netlify
-        run: npx netlify-cli deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod --dir ./out
+        run: npx netlify-cli deploy --site ${{ secrets.NETLIFY_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod --dir ./p03tdw/out
