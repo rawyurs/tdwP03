@@ -80,5 +80,5 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Deploy to Netlify
-        run: npx netlify-cli deploy --site joao-neves-tdw-mctw.netlify.app --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
+        run: npx netlify-cli deploy --site 87064f96-2d42-4cef-bd87-2467800e607a --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
         working-directory: ./p03tdw
