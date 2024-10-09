@@ -58,16 +58,20 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: List files in working directory
+        run: ls -la ./p03tdw
+
       - name: Install dependencies
         run: npm install
         working-directory: ./p03tdw
 
       - name: Build the project
-        run: npm run build && npm run export
+        run: npm run build --if-present
         working-directory: ./p03tdw
 
-      - name: List files in out directory
-        run: ls -la ./p03tdw/out
+      - name: Run tests
+        run: npm test
+        working-directory: ./p03tdw
 
   deploy:
     runs-on: ubuntu-latest
