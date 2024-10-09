@@ -69,9 +69,6 @@ jobs:
         run: npm run build
         working-directory: ./p03tdw
 
-      - name: List files in out directory
-        run: ls -la /home/runner/work/tdwP03/p03tdw/out
-
       - name: Run tests
         run: npm test
         working-directory: ./p03tdw
