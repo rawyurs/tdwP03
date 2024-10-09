@@ -1,11 +1,43 @@
 name: Node.js CI
 
-on: [pull_request, push]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./p03tdw
+
+      - name: Run Prettier
+        run: npx prettier --check
+        working-directory: ./p03tdw
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./p03tdw
+
+      - name: Run Tests
+        run: npm test
+        working-directory: ./p03tdw
+
   build:
     runs-on: ubuntu-latest
-
+    needs: [prettier, test]
     strategy:
       matrix:
         node-version: [22.x]
@@ -18,8 +50,8 @@ jobs:
         with:
           path: |
             ~/.npm
-            ./p03tdw/node_modules  # Atualizado para refletir o caminho correto
-          key: ${{ runner.os }}-node-${{ hashFiles('p03tdw/package-lock.json') }} # Atualizado para refletir o caminho correto
+            ./p03tdw/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('p03tdw/package-lock.json') }}
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
@@ -27,16 +59,26 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: List files in working directory
-        run: ls -la ./p03tdw # Atualizado para refletir o caminho correto
+        run: ls -la ./p03tdw
 
       - name: Install dependencies
         run: npm install
-        working-directory: ./p03tdw # Atualizado para refletir o caminho correto
+        working-directory: ./p03tdw
 
       - name: Build the project
         run: npm run build --if-present
-        working-directory: ./p03tdw # Atualizado para refletir o caminho correto
+        working-directory: ./p03tdw
 
       - name: Run tests
         run: npm test
-        working-directory: ./p03tdw # Atualizado para refletir o caminho correto
+        working-directory: ./p03tdw
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Netlify
+        run: npx netlify-cli deploy --site joao-neves-tdw-mctw.netlify.app --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --prod
+        working-directory: ./p03tdw
