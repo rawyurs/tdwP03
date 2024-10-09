@@ -66,8 +66,11 @@ jobs:
         working-directory: ./p03tdw
 
       - name: Build the project
-        run: npm run build --if-present
+        run: npm run build && npm run export
         working-directory: ./p03tdw
+
+      - name: List files in out directory
+        run: ls -la /home/runner/work/tdwP03/p03tdw/out
 
       - name: Run tests
         run: npm test
