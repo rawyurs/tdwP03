@@ -25,5 +25,8 @@ exports[`renders Home component 1`] = `
   <p>
     Ricardo
   </p>
+  <p>
+    José
+  </p>
 </DocumentFragment>
 `;

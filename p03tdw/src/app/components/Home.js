@@ -8,6 +8,7 @@ export default function Home() {
       <p>amizade2</p>
       <h1>Hello World!</h1>
       <p>Ricardo</p>
+      <p>José</p>
     </>
   );
 }
